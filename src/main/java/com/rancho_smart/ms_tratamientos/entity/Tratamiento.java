@@ -17,7 +17,7 @@ public class Tratamiento {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTratamiento;
 
     @Column(name = "ID_HISTORIAL_MEDICO", nullable = false)
     private Long idHistorialMedico;
@@ -37,12 +37,12 @@ public class Tratamiento {
     @OneToMany
     private List<Medicamento> listadoMedicamentos;
 
-    public Long getId() {
-        return id;
+    public Long getIdTratamiento() {
+        return idTratamiento;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdTratamiento(Long idTratamiento) {
+        this.idTratamiento = idTratamiento;
     }
 
     public String getTitulo() {
@@ -80,7 +80,6 @@ public class Tratamiento {
     public Tratamiento() {
     }
 
-
     public Tratamiento(Long idHistorialMedico, String titulo, String descripcion, LocalDate fechaInicio,
             LocalDate fechaFin, List<Medicamento> listadoMedicamentos) {
         this.idHistorialMedico = idHistorialMedico;
@@ -106,5 +105,4 @@ public class Tratamiento {
     public void setListadoMedicamentos(List<Medicamento> listadoMedicamentos) {
         this.listadoMedicamentos = listadoMedicamentos;
     }
-
 }
