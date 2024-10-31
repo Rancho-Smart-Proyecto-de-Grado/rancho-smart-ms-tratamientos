@@ -35,7 +35,7 @@ public class Tratamiento {
     private LocalDate fechaFin;
 
     @OneToMany
-    private List<Medicamento> listadoMedicamentos;
+    private List<MedicamentoTratamiento> listadoMedicamentos;
 
     public Long getIdTratamiento() {
         return idTratamiento;
@@ -81,7 +81,7 @@ public class Tratamiento {
     }
 
     public Tratamiento(Long idHistorialMedico, String titulo, String descripcion, LocalDate fechaInicio,
-            LocalDate fechaFin, List<Medicamento> listadoMedicamentos) {
+            LocalDate fechaFin, List<MedicamentoTratamiento> listadoMedicamentos) {
         this.idHistorialMedico = idHistorialMedico;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -98,11 +98,11 @@ public class Tratamiento {
         this.idHistorialMedico = idHistorialMedico;
     }
 
-    public List<Medicamento> getListadoMedicamentos() {
+    public List<MedicamentoTratamiento> getListadoMedicamentos() {
         return listadoMedicamentos;
     }
 
-    public void setListadoMedicamentos(List<Medicamento> listadoMedicamentos) {
+    public void setListadoMedicamentos(List<MedicamentoTratamiento> listadoMedicamentos) {
         this.listadoMedicamentos = listadoMedicamentos;
     }
 }
