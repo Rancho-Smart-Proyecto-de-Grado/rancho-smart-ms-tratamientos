@@ -3,8 +3,10 @@ package com.rancho_smart.ms_tratamientos.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +36,7 @@ public class Tratamiento {
     @Column(name = "FECHA_FIN")
     private LocalDate fechaFin;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
     private List<MedicamentoTratamiento> listadoMedicamentos;
 
     public Long getIdTratamiento() {
