@@ -15,8 +15,8 @@ public class MedicamentoTratamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMedicamentoTratamiento;
 
-    @Column(name = "ID_MEDICAMENTO")
-    private Long idMedicamento;
+    @Column(name = "NOMBRE_MEDICAMENTO")
+    private String nombreMedicamento;
 
     @Column(name = "DOSIS_RECOMENDADA")
     private double dosisRecomendada;
@@ -30,9 +30,9 @@ public class MedicamentoTratamiento {
     public MedicamentoTratamiento() {
     }
 
-    public MedicamentoTratamiento(Long idMedicamento, double dosisRecomendada, String frecuencia,
+    public MedicamentoTratamiento(String nombreMedicamento, double dosisRecomendada, String frecuencia,
             String observaciones) {
-        this.idMedicamento = idMedicamento;
+        this.nombreMedicamento = nombreMedicamento;
         this.dosisRecomendada = dosisRecomendada;
         this.frecuencia = frecuencia;
         this.observaciones = observaciones;
@@ -44,14 +44,6 @@ public class MedicamentoTratamiento {
 
     public void setIdMedicamentoTratamiento(Long idMedicamentoTratamiento) {
         this.idMedicamentoTratamiento = idMedicamentoTratamiento;
-    }
-
-    public Long getIdMedicamento() {
-        return idMedicamento;
-    }
-
-    public void setIdMedicamento(Long idMedicamento) {
-        this.idMedicamento = idMedicamento;
     }
 
     public double getDosisRecomendada() {
@@ -76,5 +68,13 @@ public class MedicamentoTratamiento {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public String getNombreMedicamento() {
+        return nombreMedicamento;
+    }
+
+    public void setNombreMedicamento(String nombreMedicamento) {
+        this.nombreMedicamento = nombreMedicamento;
     }
 }

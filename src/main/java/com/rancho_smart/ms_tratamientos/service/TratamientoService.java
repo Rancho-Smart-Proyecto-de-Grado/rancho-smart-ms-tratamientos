@@ -19,6 +19,9 @@ public class TratamientoService {
         return tratamientoRepository.findAll();
     }
 
+    public List<Tratamiento> getTratamientosByIdHistorialMedico(Long idHistorialMedico){
+        return this.tratamientoRepository.findByIdHistorialMedico(idHistorialMedico);
+    }
     public Optional<Tratamiento> getTratamientoById(Long id) {
         return tratamientoRepository.findById(id);
     }

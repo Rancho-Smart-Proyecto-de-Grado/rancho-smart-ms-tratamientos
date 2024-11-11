@@ -1,8 +1,8 @@
 package com.rancho_smart.ms_tratamientos.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rancho_smart.ms_tratamientos.entity.Tratamiento;
 import com.rancho_smart.ms_tratamientos.service.TratamientoService;
 
-
 @RestController
 @RequestMapping("/tratamientos")
 public class TratamientoRESTController {
@@ -25,8 +24,9 @@ public class TratamientoRESTController {
     private TratamientoService tratamientoService;
 
     @GetMapping
-    public List<Tratamiento> getAllTratamientos() {
-        return tratamientoService.getAllTratamientos();
+    public ResponseEntity<List<Tratamiento>> getAllTratamientos() {
+        List<Tratamiento> tratamientos = tratamientoService.getAllTratamientos();
+        return ResponseEntity.ok(tratamientos);
     }
 
     @GetMapping("/{id}")
@@ -36,9 +36,19 @@ public class TratamientoRESTController {
             .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/historial/{idHistorialMedico}")
+    public ResponseEntity<List<Tratamiento>> getTratamientosByIdHistorialMedico(@PathVariable Long idHistorialMedico) {
+        List<Tratamiento> tratamientos = tratamientoService.getTratamientosByIdHistorialMedico(idHistorialMedico);
+        if (tratamientos != null && !tratamientos.isEmpty()) {
+            return ResponseEntity.ok(tratamientos);
+        }
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping
-    public Tratamiento createTratamiento(@RequestBody Tratamiento tratamiento) {
-        return tratamientoService.createTratamiento(tratamiento);
+    public ResponseEntity<Tratamiento> createTratamiento(@RequestBody Tratamiento tratamiento) {
+        Tratamiento createdTratamiento = tratamientoService.createTratamiento(tratamiento);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTratamiento);
     }
 
     @PutMapping("/{id}")
@@ -48,12 +58,11 @@ public class TratamientoRESTController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTratamiento(@PathVariable Long id) {
         if (tratamientoService.deleteTratamiento(id)) {
             return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }
